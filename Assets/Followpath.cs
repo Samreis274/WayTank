@@ -35,11 +35,13 @@ public class Followpath : MonoBehaviour
             //Declara q o wps sempre sera 0
             currentNode = wps[0];
         }
-        public void GoToHeli()
+    //Leva o objeto para um ponto especifico seguindo os waypoint, no caso heliporto
+    public void GoToHeli()
         {
             g.AStar(currentNode, wps[1]);
             currentWP = 0;
         }
+        //Leva o objeto para um ponto especifico seguindo os waypoints, no caso as ruinas 
         public void GoToRuin()
         {
             g.AStar(currentNode, wps[5]);
