@@ -48,8 +48,7 @@ public class Followpath : MonoBehaviour
             currentWP = 0;
 
 
-
-    }
+        }
 
    
     void LateUpdate()
