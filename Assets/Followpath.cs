@@ -46,11 +46,14 @@ public class Followpath : MonoBehaviour
         {
             g.AStar(currentNode, wps[5]);
             currentWP = 0;
-
-
+        }
+        public void GoToReser()
+        {
+            g.AStar(currentNode, wps[8]);
+         currentWP = 0;
         }
 
-   
+
     void LateUpdate()
     {
         //Da a condicao se o Graph for igual a zero e o currentWP for igual a zero roda a condiçao
