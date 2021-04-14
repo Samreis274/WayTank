@@ -2,60 +2,90 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Followpath : MonoBehaviour
 {
-    //tranform dos pontos
+    /*Codigo utilizado para waypoints
+    tranform dos pontos
     Transform goal;
-    //velocidade do objeto
+    velocidade do objeto
     float speed = 5.0f;
-    //contor na hora da curva
+    contor na hora da curva
     float accuracy = 1.0f;
-    //velocidade da curva 
+    velocidade da curva 
     float rotSpeed = 2.0f;
+    */
 
-    //criação do objeto wpmanager
-    public GameObject WPManager;
+
     //array do waypoints
     GameObject[] wps;
-    //pega os nos nodes criados no wpManager
+    //criação do objeto wpmanager
+    public GameObject WPManager;
+    //criando o objeto navmesh
+    UnityEngine.AI.NavMeshAgent agent;
+
+    /*Codigo utilizado para waypoints
+    pega os nos nodes criados no wpManager
     GameObject currentNode;
-    //Pontos sempre voltar a 0
+    Pontos sempre voltar a 0
     int currentWP = 0;
-    //pega o Graph
+    pega o Graph
     Graph g;
+    */
 
     // Start is called before the first frame update
     public void Start()
     {
             //pega o componente waypoints do WpManager
             wps = WPManager.GetComponent<Wpmanager1>().waypoints;
-           //Pega o componente graph do WpManager
+            //pegando o meu navemesh e declarando ele numa variavel
+            agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+            
+            /*Codigo utilizado para waypoints
+            Pega o componente graph do WpManager   
             g = WPManager.GetComponent<Wpmanager1>().graph;
-            //Declara q o wps sempre sera 0
+            Declara q o wps sempre sera 0
             currentNode = wps[0];
+            */
         }
     //Leva o objeto para um ponto especifico seguindo os waypoint, no caso heliporto
     public void GoToHeli()
         {
+            //Leva o objeto para um ponto especifico seguindo os points em navemesh
+            agent.SetDestination(wps[1].transform.position);
+            /*Codigo utilizado para waypoints
             g.AStar(currentNode, wps[1]);
             currentWP = 0;
-        }
-        //Leva o objeto para um ponto especifico seguindo os waypoints, no caso as ruinas 
-        public void GoToRuin()
+            */
+    }
+    //Leva o objeto para um ponto especifico seguindo os waypoints, no caso as ruinas 
+    public void GoToRuin()
         {
+            //Leva o objeto para um ponto especifico seguindo os points em navemesh
+            agent.SetDestination(wps[5].transform.position);
+        
+            /*Codigo utilizado para waypoints
             g.AStar(currentNode, wps[5]);
             currentWP = 0;
-        }
-        public void GoToReser()
+            */
+    }
+    //Leva o objeto para um ponto especifico seguindo os waypoints, no caso os reservatorios
+    public void GoToReser()
         {
+        //Leva o objeto para um ponto especifico seguindo os points em navemesh
+        agent.SetDestination(wps[8].transform.position);
+             
+            /*Codigo utilizado para waypoints
             g.AStar(currentNode, wps[8]);
-         currentWP = 0;
-        }
+            currentWP = 0;
+            */
+    }
 
 
     void LateUpdate()
     {
+        /*Codigo utilizado para waypoints
         //Da a condicao se o Graph for igual a zero e o currentWP for igual a zero roda a condiçao
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
             return;
@@ -79,6 +109,6 @@ public class Followpath : MonoBehaviour
             Vector3 direction = lookAtGoal - this.transform.position;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation,Quaternion.LookRotation(direction),Time.deltaTime * rotSpeed);
         }
-        this.transform.Translate(0, 0, speed * Time.deltaTime);
+        this.transform.Translate(0, 0, speed * Time.deltaTime);*/
     }
 }
